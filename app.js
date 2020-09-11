@@ -1,39 +1,36 @@
 // get buttons and span
 
-const btnDecrease = document.querySelector('.decrease');
-const btnReset = document.querySelector('.reset');
-const btnIncrease = document.querySelector('.increase');
+const buttons = document.querySelectorAll('.btn');
 const span = document.getElementById('value');
 
 // initial counter
 let spanCounter = 0;
 
-// if (spanCounter > 0) {
-//     span.style.color = 'green';
-// } else if (spanCounter < 0) {
-//     span.style.color = 'red';
-// } else{
-//     span.style.color - 'black';
-// }
+buttons.forEach( (button) => {
+    button.addEventListener('click', (e) => {
+        const btnClass = e.currentTarget.classList;
 
-btnDecrease.addEventListener('click', decreaseNum);
-btnReset.addEventListener('click', resetNum);
-btnIncrease.addEventListener('click', increaseNum);
+        if (btnClass.contains('decrease')){
+            spanCounter --;
+        }
+        else if(btnClass.contains('increase')){
+            spanCounter ++;
+        } 
+        else{
+            spanCounter = 0;
+        }
 
-function decreaseNum(){
-    spanCounter -= 1;
-    span.textContent = spanCounter;
-}
+        span.textContent = spanCounter;
 
-function resetNum() {
-    spanCounter = 0;
-    span.textContent = spanCounter;
-}
+        if (spanCounter > 0) {
+            span.style.color = 'green';
+        } else if (spanCounter < 0){
+            span.style.color = 'red'
+        } else {
+            span.style.color = 'hsl(209, 61% , 16% )';
+        }
 
-
-function increaseNum() {
-    spanCounter += 1;
-    span.textContent = spanCounter;
-}
+    });
+})
 
 
